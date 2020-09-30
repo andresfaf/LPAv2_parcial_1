@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+</head>
+<body>
+	<header style="color: white" class="bg-primary">
+		<h3 th:text="${titulo}" class="text text-center" style="padding: 10px;"></h3>
+	</header>
+	<nav class="nav" style="border-bottom: 1px solid black">
+		<a class="nav-link" th:href="@{/estudiante/formulario}"><i class="mdi mdi-account-plus"></i> Agregar estudiante</a>
+	</nav>
+	<div class="container py-4">
+		<div class="card" style="width: 70%; margin-left: auto; margin-right: auto">
+			<div class="card-body">
+				<table class="table table-bordered">
+
+					<thead>
+						<tr>
+							<th class="text-center">Nombre completo</th>
+							<th class="text-center">Nota final</th>
+							<th class="text-center"># faltas</th>
+							<th class="text-center">Descripción</th>
+							<th colspan="3" class="text-center">Acciones</th>
+						</tr> 
+					</thead>
+					<tbody>
+						<tr th:each="std : ${estudiantes}">
+							<td th:text="${std.nombre}"></td>
+							<td class="text-right" th:text="${std.notaFinal}"></td>
+							<td class="text-right" style="margin-right: 10px" th:text="${std.numeroFaltas}"></td>
+							<td th:if="${std.notaFinal < 3.0}" th:text="${'Reprovado'}" class="bg-danger" style="color: white"></td>
+							<td th:if="${std.notaFinal >= 3.0}" th:text="${'Aprobado'}" class="bg-success" style="color: white"></td>
+							<td class="text-center"><a th:href="@{/estudiante/consultar/} +  ${std.id}"  style="color: black"><i class="mdi mdi-magnify"></i></a></td>
+							<td class="text-center"><a th:href="@{/estudiante/modificar/} +  ${std.id}" style="color: green"><i class="mdi mdi-refresh"></i></a></td>
+							<td class="text-center"><a th:href="@{/estudiante/eliminar/} +  ${std.id}" style="color: red"><i class="mdi mdi-delete"></i></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

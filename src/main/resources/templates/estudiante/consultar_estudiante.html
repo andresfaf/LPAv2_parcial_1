@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
+</head>
+<body>
+	<header class="bg-primary" style="color: white">
+		<h3 th:text="${titulo}" class="text text-center" style="padding: 10px"></h3>
+	</header>
+	
+	<nav class="nav" style="border-bottom: 1px solid black">
+		<a class="nav-link" th:href="@{/estudiante/listado}"><i class="mdi mdi-arrow-left-bold"></i></a> 
+
+	</nav>
+	<div class="container  py-4">
+
+		<div class="card ">
+			<div class="card-body">
+				<h4 class="card-title"></h4>
+
+				<ul class="list-group">
+					<li class="list-group-item"
+						th:text="${'Identificación: ' + estudiante.id}"></li>
+					<li class="list-group-item"
+						th:text="${'Nombres: ' + estudiante.nombre}"></li>
+					<li class="list-group-item"
+						th:text="${'Nota final: ' + estudiante.notaFinal}"></li>
+					<li class="list-group-item"
+						th:text="${'Número faltas: ' + estudiante.numeroFaltas}"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
